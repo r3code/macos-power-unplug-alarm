@@ -1,12 +1,17 @@
+on plugged()
+	set chargeState to do shell script "pmset -g batt | awk '{printf \"%s %s\\n\", $4,$5;exit}'"
+	
+	if (chargeState contains "AC Power") then return true
+	return false
+end plugged
+
+
 on run {}
 	set total_time to 20 as integer # in minutes
-	set dalay_time to 3 as integer # in seconds
-	set alert_num to 10
+	set dalay_time to 2 as integer # in seconds
 	
 	repeat total_time * 60 / dalay_time times
-		set chargeState to do shell script "pmset -g batt | awk '{printf \"%s %s\\n\", $4,$5;exit}'"
-		
-		if (chargeState does not contain "AC Power") then
+		if (not plugged()) then
 			# https://gist.github.com/youandhubris/9e292822e3db8f91df93234db092906e
 			tell application "Mail"
 				set theFrom to "alirezahabib@icloud.com" # change this line
@@ -41,7 +46,7 @@ on run {}
 				send theMessage
 			end tell
 			
-			repeat alert_num times
+			repeat while not plugged()
 				say "Unplugged!"
 			end repeat
 		end if

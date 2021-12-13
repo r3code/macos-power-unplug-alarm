@@ -14,8 +14,8 @@ on run {}
 		if (not plugged()) then
 			# https://gist.github.com/youandhubris/9e292822e3db8f91df93234db092906e
 			tell application "Mail"
-				set theFrom to "alirezahabib@icloud.com" # change this line
-				set theTos to {"alirezahabib@icloud.com"} # change this line
+				set theFrom to "your_email_address@example.com" # change this line
+				set theTos to {"your_email_address@example.com"} # change this line
 				set theCcs to {}
 				set theBccs to {}
 				

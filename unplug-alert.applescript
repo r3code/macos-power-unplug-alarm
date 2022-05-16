@@ -19,8 +19,8 @@ on run {}
 				set theCcs to {}
 				set theBccs to {}
 				
-				set theSubject to "Unplugged!"
-				set theContent to "Unplugged!"
+				set theSubject to "MacBook Unplugged!"
+				set theContent to "MacBook Unplugged!"
 				set theSignature to ""
 				set theAttachments to {}
 				set theDelay to 0
@@ -48,6 +48,7 @@ on run {}
 			
 			repeat while not plugged()
 				say "Unplugged!"
+				say "STOP! Put it back!"
 			end repeat
 		end if
 		delay dalay_time
